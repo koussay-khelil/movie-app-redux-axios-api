@@ -1,0 +1,16 @@
+{
+  "movies": [
+    {
+      "id": 1,
+      "title": "john wick",
+      "image": "https://i.ebayimg.com/images/g/9GEAAOSwpP9Y6rhe/s-l300.jpg",
+      "rating": 5
+    },
+    {
+      "id": 3,
+      "title": "jane",
+      "image": "https://i.ebayimg.com/images/g/9GEAAOSwpP9Y6rhe/s-l300.jpg",
+      "rating": "5"
+    }
+  ]
+}
