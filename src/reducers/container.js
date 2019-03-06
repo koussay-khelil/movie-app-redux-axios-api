@@ -1,10 +1,11 @@
 
-const initialState = [
+let initialState = [
 ]
 
 
 const movieList = (state = initialState, action) => {
   if (action.type === 'FETCH_MOVIES_SUCCESS') {
+    initialState = action.data
     return action.data
   }
   if (action.type === 'ADD_SUCCESS') { return state.concat({ ...action.data }) }
