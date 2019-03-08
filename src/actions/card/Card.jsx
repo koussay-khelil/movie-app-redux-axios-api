@@ -25,12 +25,22 @@ const Card = ({
     </div>
   </div>
 )
+const get = () => (dispatch) => {
+  axios.get('http://localhost:3000/movies')
+    .then((res) => {
+      console.log(res)
+      dispatch({
+        type: 'FETCH_MOVIES_SUCCESS',
+        data: res.data,
+      })
+    })
+}
 const deleteformapi = id => (dispatch) => {
   dispatch({
     type: 'DELETE',
   })
   const url = `${'http://localhost:3000/movies' + '/'}${id}`
-  axios.delete(url).then(res => dispatch({ type: 'DELETE_SUCCESS', id }))
+  axios.delete(url).then(res => dispatch({ type: 'DELETE_SUCCESS', id })).then(res => dispatch(get()))
 }
 const updateapi = movie => (dispatch) => {
   dispatch({
@@ -50,6 +60,7 @@ const updateapi = movie => (dispatch) => {
       data,
       { headers: { 'Content-Type': 'application/json' } },
     ).then(res => dispatch({ type: 'UPDATE_SUCCESS', data: res.data }))
+    .then(res => dispatch(get()))
 }
 
 // Card.propTypes = {

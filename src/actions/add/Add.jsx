@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import Stars from 'movie/stars'
+import getfromApi from 'App'
 // import PropTypes from 'prop-types'
 import './Add.scss'
 
@@ -75,6 +76,16 @@ render() {
   )
 }
 }
+const get = () => (dispatch) => {
+  axios.get('http://localhost:3000/movies')
+    .then((res) => {
+      console.log(res)
+      dispatch({
+        type: 'FETCH_MOVIES_SUCCESS',
+        data: res.data,
+      })
+    })
+}
 const addtoapi = state => (dispatch) => {
   dispatch({
     type: 'ADD',
@@ -91,6 +102,7 @@ const addtoapi = state => (dispatch) => {
       },
     },
   }).then(res => dispatch({ type: 'ADD_SUCCESS', data: res.data }))
+    .then(res => dispatch(get()))
 }
 
 const mapDispatchToProps = dispatch => ({
